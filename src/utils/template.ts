@@ -1,6 +1,20 @@
 import { PreExistingTemplate } from '../enums/preExistingTemplate'
+import fs from 'fs'
+import path from 'path'
+import handlebars from 'handlebars'
 
-export const getPreExistingTemplate = (tplType: PreExistingTemplate): any => {
+const loadHTML = async (htmlFile: string, replacements: any | null): Promise<string> => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'template', htmlFile))
+
+  if (replacements === null) {
+    return html.toString()
+  } else {
+    const template = handlebars.compile(html.toString())
+    return template(replacements)
+  }
+}
+
+export const getPreExistingTemplate = async (tplType: PreExistingTemplate): Promise<any> => {
   switch (tplType) {
     case PreExistingTemplate.FW_Contact:
       return {
@@ -10,7 +24,7 @@ export const getPreExistingTemplate = (tplType: PreExistingTemplate): any => {
     case PreExistingTemplate.ADA_Welcome:
       return {
         text: 'Bienvenid@ a ADA - Entrenamiento Auditivo',
-        html: '<h3>Bienvenid@ a ADA - Entrenamiento Auditivo</h3> <h5>Ya estas listo para comenzar</h5>'
+        html: await loadHTML('ADA_Welcome.html', null)
       }
     default:
       throw new Error('utils/template/getPreExistingTemplate -> PreExistingTemplate not found')
