@@ -39,7 +39,7 @@ npm run test:watch
 npm run dev 
 
 # prod environment
-nup run start
+npm run start
 ```
 
 #### Initialize .env file

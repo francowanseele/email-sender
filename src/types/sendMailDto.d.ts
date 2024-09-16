@@ -12,5 +12,5 @@ export interface SendMail {
   ClientType: ClientType
 }
 
-export type SendMailFromPreExistingTemplateDto = Omit<SendEmail, 'Text' | 'HTML'>
-export type SendMailFromExplicitTemplateDto = Omit<SendEmail, 'PreExistingTemplate' | 'Link'>
+export type SendMailFromPreExistingTemplateDto = Omit<SendEmail, 'HTML'>
+export type SendMailNoTemplateDto = Omit<SendEmail, 'PreExistingTemplate' | 'Link'>

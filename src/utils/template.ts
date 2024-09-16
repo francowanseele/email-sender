@@ -14,12 +14,12 @@ const loadHTML = async (htmlFile: string, replacements: any | null): Promise<str
   }
 }
 
-export const getPreExistingTemplate = async (tplType: PreExistingTemplate): Promise<any> => {
+export const getPreExistingTemplate = async (tplType: PreExistingTemplate, text: string): Promise<any> => {
   switch (tplType) {
     case PreExistingTemplate.FW_Contact:
       return {
-        text: 'hola mundo',
-        html: '<h1>Hola</h1> <p>Cuerpo del mail</p>'
+        text: text,
+        html: `<h1>Mensaje enviado:</h1> <p>${text}</p>`
       }
     case PreExistingTemplate.ADA_Welcome:
       return {

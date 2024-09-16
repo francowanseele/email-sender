@@ -9,7 +9,7 @@ export const sendMail = async (input: SendMailFromPreExistingTemplateDto): Promi
     ClientType: input.ClientType
   }
 
-  const tpl = await getPreExistingTemplate(input.PreExistingTemplate)
+  const tpl = await getPreExistingTemplate(input.PreExistingTemplate, input.Text)
   const emailInfo = getEmailInfo(input.ClientType)
 
   await getTransporter(getTransporterDto).sendMail({
