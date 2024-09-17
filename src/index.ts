@@ -3,9 +3,11 @@ import config from './config'
 
 import emailRouter from './routes/email'
 import clientRouter from './routes/client'
+import cors from 'cors'
 
 const app = express()
 app.use(express.json()) // middleware -> transform req.body to json
+app.use(cors())
 
 app.get('/ping', (_req, res) => {
   res.send('pong')

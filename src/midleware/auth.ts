@@ -17,8 +17,8 @@ export const authApiKey = (req: express.Request, res: express.Response, next: ex
 }
 
 export const getClientFromToken = (req: CustomRequest, res: express.Response, next: express.NextFunction): void => {
-  try {
-    const authorization = req.get('authorization') ?? ''
+  try {    
+    const authorization = req.get('authorization') ?? ''    
     let token = ''
     let clientType = null
 
